@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
       } else {
         cout << "slide rejected" << endl;
         rejected_H.emplace_back(photosH[photosH.size()-1]);
-      }photosH.size()-1])
+      } 
 
     }
   }
