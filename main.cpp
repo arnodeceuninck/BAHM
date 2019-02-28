@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
   std::vector<Photo> photosH;
   std::vector<Photo> rejected_H;
 
-  Slide slideshow();
+  Slide slideshow = Slide({});
   for (int n {0}; n < N; ++n) {
     char orientation;
     int tag_count;
@@ -38,12 +38,12 @@ int main(int argc, char* argv[]) {
       // TODO: toevoegen aan stack en vergelijken
 
       // Als er nog geen slides zijn
-      if(slideshow().isEmpty()){
-        slideshow().add_slide(photosH[photosH.size()]);
+      if(slideshow.isEmpty()){
+        slideshow.add_slide(photosH[photosH.size()]);
 
         // Als de match score kleiner is dan 5
-      } else if (evaluation::score(slideshow().last_slide().tags, photosH[photosH.size()-1].tags) < 5){
-        slideshow().add_slide(photosH[photosH.size()-1]);
+      } else if (evaluation::score(slideshow.last_slide().tags, photosH[photosH.size()-1].tags) < 5){
+        slideshow.add_slide(photosH[photosH.size()-1]);
 
         // Als de match verwerpt wordt
       } else {
@@ -54,9 +54,25 @@ int main(int argc, char* argv[]) {
   }
   }
 
+  int try_count = 0;
+  while (try_count < 100 and rejected_H.size() > 0){
+    try_count++;
+    std::vector<Photo> rejected_H_2 = {};
 
+    for(auto photo: rejected_H){
+      if (evaluation::score(slideshow.last_slide().tags, photo.tags) < 5){
+        slideshow.add_slide(photo);
 
-  // Onze verzameling zit nu in photos
+        // Als de match verwerpt wordt
+      } else {
+        rejected_H_2.emplace_back(photosH[photosH.size()-1]);
+      }
+    }
+
+    rejected_H = rejected_H_2;
+  }
+
+  // Vanaf hier zit de te outputten data in slideshow
 
 
   return 0;
