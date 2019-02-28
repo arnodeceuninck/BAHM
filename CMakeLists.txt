@@ -13,4 +13,5 @@ add_executable(
   evaluation.cpp
   photo.h
   photo.cpp
+        output.h
 )
