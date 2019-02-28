@@ -27,8 +27,12 @@ public:
         return photos.back().tags;
   }
 
-  bool isEmpt(){
+  bool isEmpty(){
       return photos.size() == 0;
+  }
+
+  Photo last_slide(){
+      return photos.back();
   }
 };
 
