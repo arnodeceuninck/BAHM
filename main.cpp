@@ -3,6 +3,7 @@
 #include <unordered_set>
 #include <vector>
 
+#include "output.h"
 #include "photo.h"
 #include "Slide.h"
 #include "evaluation.h"
@@ -94,7 +95,7 @@ int main(int argc, char* argv[]) {
 
   // Vanaf hier zit de te outputten data in slideshow
 
-
+  exportSlides(slideshow)
 
   return 0;
 }
