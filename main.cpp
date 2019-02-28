@@ -3,16 +3,7 @@
 #include <vector>
 
 #include "photo.h"
-
-struct Slide {
-public:
-    std::vector<Photo> photos;
-
-public:
-    Slide(std::vector<Photo> slidePhotos) {
-      this->photos = slidePhotos;
-    }
-};
+#include "Slide.h"
 
 int main(int argc, char* argv[]) {
   int N;

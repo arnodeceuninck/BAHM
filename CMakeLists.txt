@@ -3,4 +3,4 @@ project(BAHM)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(BAHM main.cpp parser.h)
+add_executable(BAHM main.cpp parser.h Slide.cpp Slide.h)
