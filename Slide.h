@@ -7,6 +7,8 @@
 
 #include "photo.h"
 #include <vector>
+#include <unordered_set>
+#include <string>
 
 
 class Slide {
@@ -16,6 +18,14 @@ public:
 public:
   Slide(std::vector<Photo> slidePhotos)
     : photos(slidePhotos) {}
+
+    void add_slide(Photo photo) {
+        photos.push_back(photo);
+    }
+
+    std::unordered_set<std::string> tags_of_last_slide(){
+        return photos.back().tags;
+  }
 };
 
 
