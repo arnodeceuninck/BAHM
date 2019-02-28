@@ -26,6 +26,10 @@ public:
     std::unordered_set<std::string> tags_of_last_slide(){
         return photos.back().tags;
   }
+
+  bool isEmpt(){
+      return photos.size() == 0;
+  }
 };
 
 
