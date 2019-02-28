@@ -11,9 +11,9 @@ public:
   std::unordered_set<std::string> tags;
 
 public:
-  Photo() = default;
+  Photo();
   Photo(int id, char orientation);
-  void add_tag(const std::string& tag) { tags.emplace(tag); }
+  void add_tag(const std::string& tag);
 };
 
 #endif // BAHM_PHOTO_H

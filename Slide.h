@@ -5,18 +5,17 @@
 #ifndef BAHM_SLIDE_H
 #define BAHM_SLIDE_H
 
+#include "photo.h"
 #include <vector>
 
-class Photo;
 
 class Slide {
 public:
     std::vector<Photo> photos;
 
 public:
-    Slide(std::vector<Photo> slidePhotos) {
-        this->photos = slidePhotos;
-    }
+  Slide(std::vector<Photo> slidePhotos)
+    : photos(slidePhotos) {}
 };
 
 
