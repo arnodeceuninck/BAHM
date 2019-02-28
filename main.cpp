@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <unordered_set>
 #include <vector>
 
@@ -9,12 +10,16 @@
 using  namespace std;
 
 int main(int argc, char* argv[]) {
-
+  if (argc == 1) {
+    std::cerr << "No input file." << '\n';
+    return 0;
+  }
+  std::ifstream fin {argv[1]
   // Inlezen van het bestand
   cout << "Start reading..." << endl;
 
   int N;
-  std::cin >> N;
+  fin >> N;
   std::vector<Photo> photosV;
   std::vector<Photo> photosH;
   std::vector<Photo> rejected_H;
@@ -26,20 +31,20 @@ int main(int argc, char* argv[]) {
       cout << "in for loop" << endl;
     char orientation;
     int tag_count;
-    std::cin >> orientation >> tag_count;
+    fin >> orientation >> tag_count;
 
     if(orientation == 'V') {
       photosV.emplace_back(Photo(n, orientation));
       while (tag_count--) {
         std::string curr_tag;
-        std::cin >> curr_tag;
+        fin >> curr_tag;
         photosV[photosH.size()-1].add_tag(curr_tag);
       }
   } else {
     photosH.emplace_back(Photo(n, orientation));
     while (tag_count--) {
       std::string curr_tag;
-      std::cin >> curr_tag;
+      fin >> curr_tag;
       photosH[photosH.size()-1].add_tag(curr_tag);
       // TODO: toevoegen aan stack en vergelijken
 
