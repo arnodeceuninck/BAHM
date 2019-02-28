@@ -50,7 +50,7 @@ int main(int argc, char* argv[]) {
 
       // Als er nog geen slides zijn
       if(slideshow.isEmpty()){
-        slideshow.add_slide(photosH[photosH.size()]);
+        slideshow.add_slide(photosH[photosH.size()-1]);
 
         // Als de match score kleiner is dan 5
       } else if (evaluation::score(slideshow.last_slide().tags, photosH[photosH.size()-1].tags) < 5){
