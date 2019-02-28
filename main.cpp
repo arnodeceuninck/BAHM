@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
     std::cerr << "No input file." << '\n';
     return 0;
   }
-  std::ifstream fin {argv[1]
+  std::ifstream fin {argv[1]};
   // Inlezen van het bestand
   cout << "Start reading..." << endl;
 
@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
       } else {
         cout << "slide rejected" << endl;
         rejected_H.emplace_back(photosH[photosH.size()-1]);
-      }
+      }photosH.size()-1])
 
     }
   }
@@ -80,7 +80,7 @@ int main(int argc, char* argv[]) {
 
         // Als de match verwerpt wordt
       } else {
-        rejected_H_2.emplace_back(photosH[photosH.size()-1]);
+        rejected_H_2.emplace_back(photo);
       }
     }
 
