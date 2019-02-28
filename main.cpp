@@ -35,18 +35,18 @@ int main(int argc, char* argv[]) {
     fin >> orientation >> tag_count;
 
     if(orientation == 'V') {
-      photosV.emplace_back(Photo(n, orientation));
+      photosV.push_back(Photo(n, orientation));
       while (tag_count--) {
         std::string curr_tag;
         fin >> curr_tag;
-        photosV[photosH.size()-1].add_tag(curr_tag);
+          photosV[photosV.size()-1] = photosV[photosV.size()-1].add_tag(curr_tag);
       }
   } else {
-    photosH.emplace_back(Photo(n, orientation));
+    photosH.push_back(Photo(n, orientation));
     while (tag_count--) {
       std::string curr_tag;
       fin >> curr_tag;
-      photosH[photosH.size()-1].add_tag(curr_tag);
+        photosH[photosH.size()-1] = photosH[photosH.size()-1].add_tag(curr_tag);
       // TODO: toevoegen aan stack en vergelijken
 
       // Als er nog geen slides zijn
@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
         // Als de match verwerpt wordt
       } else {
         cout << "slide rejected" << endl;
-        rejected_H.emplace_back(photosH[photosH.size()-1]);
+        rejected_H.push_back(photosH[photosH.size()-1]);
       } 
 
     }
@@ -81,7 +81,7 @@ int main(int argc, char* argv[]) {
 
         // Als de match verwerpt wordt
       } else {
-        rejected_H_2.emplace_back(photo);
+        rejected_H_2.push_back(photo);
       }
     }
 
