@@ -3,6 +3,7 @@
 #include <unordered_set>
 #include <vector>
 
+#include "output.h"
 #include "photo.h"
 #include "Slide.h"
 #include "evaluation.h"
@@ -50,7 +51,7 @@ int main(int argc, char* argv[]) {
 
       // Als er nog geen slides zijn
       if(slideshow.isEmpty()){
-        slideshow.add_slide(photosH[photosH.size()]);
+        slideshow.add_slide(photosH[photosH.size()-1]);
 
         // Als de match score kleiner is dan 5
       } else if (evaluation::score(slideshow.last_slide().tags, photosH[photosH.size()-1].tags) < 5){
@@ -94,7 +95,7 @@ int main(int argc, char* argv[]) {
 
   // Vanaf hier zit de te outputten data in slideshow
 
-
+  exportSlides(slideshow.photos);
 
   return 0;
 }

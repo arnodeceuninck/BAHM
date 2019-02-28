@@ -10,14 +10,11 @@
 #ifndef BAHM_OUTPUT_H
 #define BAHM_OUTPUT_H
 
-void exportSlides(std::vector<Slide>& slideShow){
+void exportSlides(std::vector<Photo>& slideShow){
     std::ofstream file("batch1.txt");
     file << slideShow.size() << std::endl;
-    for (Slide slide: slideShow){
-        for (auto photo: slide.photos){
-            file << photo.id << " ";
-        }
-        file << std::endl;
+    for (Photo photo: slideShow){
+            file << photo.id << std::endl;
     }
     file.close();
 }
