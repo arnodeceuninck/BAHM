@@ -10,6 +10,8 @@
 
 using  namespace std;
 
+int SCORE_GRENS = 5;
+
 int main(int argc, char* argv[]) {
   if (argc == 1) {
     std::cerr << "No input file." << '\n';
@@ -44,17 +46,21 @@ int main(int argc, char* argv[]) {
   } else {
     photosH.push_back(new Photo(n, orientation));
     while (tag_count--) {
+      cout << tag_count << endl;
       std::string curr_tag;
       fin >> curr_tag;
-      photosH[photosH.size()-1]->add_tag(curr_tag);
+      photosH[photosH.size()-1]->add_tag(curr_tag); }
       // TODO: toevoegen aan stack en vergelijken
 
+      if(!slideshow.isEmpty()){
+        evaluation::score(slideshow.last_slide()->tags, photosH[photosH.size()-1]->tags) > SCORE_GRENS;
+      }
       // Als er nog geen slides zijn
       if(slideshow.isEmpty()){
         slideshow.add_slide(photosH[photosH.size()-1]);
 
         // Als de match score kleiner is dan 5
-      } else if (evaluation::score(slideshow.last_slide().tags, photosH[photosH.size()-1].tags) < 5){
+      } else if (evaluation::score(slideshow.last_slide()->tags, photosH[photosH.size()-1]->tags) > SCORE_GRENS){
         cout << "slide added" << endl;
 
         slideshow.add_slide(photosH[photosH.size()-1]);
@@ -67,17 +73,19 @@ int main(int argc, char* argv[]) {
 
     }
   }
-  }
+
 
 
   int try_count = 0;
-  while (try_count < 100 and rejected_H.size() > 0){
+  while (try_count < 10 and rejected_H.size() > 0){
       cout << "Trying to optimize: try " << try_count << endl;
     try_count++;
     std::vector<Photo*> rejected_H_2 = {};
 
     for(auto photo: rejected_H){
-      if (evaluation::score(slideshow.last_slide().tags, photo.tags) < 5){
+      int score = evaluation::score(slideshow.last_slide()->tags, photo->tags);
+      cout << score << endl;
+      if (score > SCORE_GRENS){
         slideshow.add_slide(photo);
 
         // Als de match verwerpt wordt

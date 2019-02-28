@@ -20,14 +20,14 @@ public:
   Slide(std::vector<Photo*> slidePhotos)
     : photos(slidePhotos) {}
   
-  Slide(const Photo& p1, const Photo& p2);
+  Slide(Photo* p1, Photo* p2);
 
     void add_slide(Photo* photo) {
         photos.push_back(photo);
     }
 
     std::unordered_set<std::string> tags_of_last_slide(){
-        return photos.back().tags;
+        return photos.back()->tags;
   }
 
   bool isEmpty(){

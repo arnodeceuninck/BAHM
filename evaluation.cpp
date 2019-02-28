@@ -11,6 +11,7 @@ int evaluation::score(const std::unordered_set<std::string>& tags1, const std::u
   std::unordered_set<std::string> output_intersection;
   int common_tags = 0;
   int not_in_2 = 0;
+  int i = 0;
   for (auto tag1 = tags1.begin(); tag1 != tags1.end(); tag1++){
       bool in_tags2 = false;
       for(auto tag2 = tags2.begin(); tag2 != tags2.end(); tag2++){
@@ -22,6 +23,7 @@ int evaluation::score(const std::unordered_set<std::string>& tags1, const std::u
       if(!in_tags2){
           not_in_2++;
       }
+      i++;
   }
   return std::min(std::min(common_tags, (int) tags2.size() - common_tags), not_in_2);
 }
