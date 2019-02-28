@@ -95,7 +95,7 @@ int main(int argc, char* argv[]) {
 
   // Vanaf hier zit de te outputten data in slideshow
 
-  exportSlides(slideshow)
+  exportSlides(slideshow.photos);
 
   return 0;
 }
