@@ -72,7 +72,12 @@ int main(int argc, char* argv[]) {
     rejected_H = rejected_H_2;
   }
 
+  for(auto photo: rejected_H){
+    slideshow.add_slide(photo);
+  }
+  
   // Vanaf hier zit de te outputten data in slideshow
+
 
 
   return 0;
