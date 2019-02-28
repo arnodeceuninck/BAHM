@@ -13,7 +13,8 @@ public:
 public:
   Photo();
   Photo(int id, char orientation);
-  Photo add_tag(const std::string& tag);
+
+    void add_tag(const std::string& tag);
 };
 
 #endif // BAHM_PHOTO_H

@@ -8,5 +8,5 @@ Photo::Photo() = default;
 Photo::Photo(int id, char orientation)
   : id(id), orientation(orientation) {}
 
-Photo Photo::add_tag(const std::string& tag) { tags.emplace(tag);
-    return *this; }
+void Photo::add_tag(const std::string& tag) { tags.emplace(tag);
+     }

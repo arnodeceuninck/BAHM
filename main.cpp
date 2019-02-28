@@ -21,9 +21,9 @@ int main(int argc, char* argv[]) {
 
   int N;
   fin >> N;
-  std::vector<Photo> photosV;
-  std::vector<Photo> photosH;
-  std::vector<Photo> rejected_H;
+  std::vector<Photo*> photosV;
+  std::vector<Photo*> photosH;
+  std::vector<Photo*> rejected_H;
 
   Slide slideshow = Slide({});
 
@@ -35,18 +35,18 @@ int main(int argc, char* argv[]) {
     fin >> orientation >> tag_count;
 
     if(orientation == 'V') {
-      photosV.push_back(Photo(n, orientation));
+      photosV.push_back(new Photo(n, orientation));
       while (tag_count--) {
         std::string curr_tag;
         fin >> curr_tag;
-          photosV[photosV.size()-1] = photosV[photosV.size()-1].add_tag(curr_tag);
+        photosV[photosV.size()-1]->add_tag(curr_tag);
       }
   } else {
-    photosH.push_back(Photo(n, orientation));
+    photosH.push_back(new Photo(n, orientation));
     while (tag_count--) {
       std::string curr_tag;
       fin >> curr_tag;
-        photosH[photosH.size()-1] = photosH[photosH.size()-1].add_tag(curr_tag);
+      photosH[photosH.size()-1]->add_tag(curr_tag);
       // TODO: toevoegen aan stack en vergelijken
 
       // Als er nog geen slides zijn
@@ -69,11 +69,12 @@ int main(int argc, char* argv[]) {
   }
   }
 
+
   int try_count = 0;
   while (try_count < 100 and rejected_H.size() > 0){
       cout << "Trying to optimize: try " << try_count << endl;
     try_count++;
-    std::vector<Photo> rejected_H_2 = {};
+    std::vector<Photo*> rejected_H_2 = {};
 
     for(auto photo: rejected_H){
       if (evaluation::score(slideshow.last_slide().tags, photo.tags) < 5){

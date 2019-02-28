@@ -13,16 +13,16 @@
 
 class Slide {
 public:
-    std::vector<Photo> photos;
+    std::vector<Photo*> photos;
     std::unordered_set<std::string> tags;
 
 public:
-  Slide(std::vector<Photo> slidePhotos)
+  Slide(std::vector<Photo*> slidePhotos)
     : photos(slidePhotos) {}
   
   Slide(const Photo& p1, const Photo& p2);
 
-    void add_slide(Photo photo) {
+    void add_slide(Photo* photo) {
         photos.push_back(photo);
     }
 
@@ -34,7 +34,7 @@ public:
       return photos.size() == 0;
   }
 
-  Photo last_slide(){
+  Photo* last_slide(){
       return photos.back();
   }
 };
